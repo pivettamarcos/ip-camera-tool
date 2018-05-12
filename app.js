@@ -16,7 +16,7 @@ const discovery = new VisualRecognitionV3({
 });
 
 let device = new onvif.OnvifDevice({
-    xaddr: 'pivetta.ddns.net:8080',
+    xaddr: 'http://pivetta.ddns.net:8080',
     user: 'admin',
     pass: 'admin'
 });
@@ -31,7 +31,7 @@ device.init().then(() => {
 
     interval(async () => {
         await device.fetchSnapshot().then( (res) => {
-            fs.writeFileSync("testPhotos/"+res.headers.date.replace(/:/g,"=")+".jpeg", res.body, {encoding: 'binary'});
+            fs.writeFileSync("testPhotos/"+res.headersshs.date.replace(/:/g,"=")+".jpeg", res.body, {encoding: 'binary'});
         }).catch((error) => {
             console.error(error);
         });
